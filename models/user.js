@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import { match } from "assert";
 
 const userSchema = new mongoose.Schema(
   {
@@ -8,6 +9,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Email is required"],
       unique: true,
+      lowercase: true,
+      trim: true,
+      match: [
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+        "Please fill a valid email address",
+      ],
     },
     password: {
       type: String,
@@ -15,6 +22,10 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "Password must be at least 6 characters long"],
       // This will prevent the password from being returned in queries
       select: false,
+      match: [
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+        "Password must contain at least one letter and one number",
+      ],
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
