@@ -22,8 +22,8 @@ const userSchema = new mongoose.Schema(
       // This will prevent the password from being returned in queries
       select: false,
       match: [
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
-        "Password must contain at least one letter and one number",
+        /^(?=.*[A-Za-z])(?=.*\d).{6,}$/,
+        "Password must be at least 6 characters and contain at least one letter and one number",
       ],
     },
     resetPasswordToken: String,
