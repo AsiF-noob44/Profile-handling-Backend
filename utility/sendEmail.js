@@ -13,7 +13,7 @@ export const sendEmail = async (options) => {
     from: `Express Auth <${process.env.EMAIL_USER}>`,
     to: options.email,
     subject: options.subject,
-    text: options.text,
+    text: options.message,
   };
 
   // send the email

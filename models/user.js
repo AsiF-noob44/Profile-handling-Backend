@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import { match } from "assert";
 
 const userSchema = new mongoose.Schema(
   {
